@@ -1,3 +1,26 @@
+async function generateAIPlan(prompt) {
+    const apiKey = "AIzaSyDJ_4JB7mlnBLiwfC3WHUYhdNeALKxn-bs";
+
+    const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
+                }]
+            })
+        }
+    );
+
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+}
 const form = document.getElementById("studyForm");
 const outputDiv = document.getElementById("output");
 
@@ -91,28 +114,41 @@ function renderPlan(subjectPlan, schedule, hours, daysLeft) {
 }
 
 // ===== MAIN ENGINE RUN =====
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const subjects = document.getElementById("subjects").value.split(",");
-    const difficulty = document.getElementById("difficulty").value.split(",");
-    const hours = parseFloat(document.getElementById("hours").value);
-    const examDate = new Date(document.getElementById("examDate").value);
+    const subjects = document.getElementById("subjects").value;
+    const difficulty = document.getElementById("difficulty").value;
+    const hours = document.getElementById("hours").value;
+    const examDate = document.getElementById("examDate").value;
 
-    const today = new Date();
-    const daysLeft = Math.max(
-        1,
-        Math.ceil((examDate - today) / (1000 * 60 * 60 * 24))
-    );
+    const prompt = `
+You are a smart medical study planner AI.
 
-    const subjectPlan = buildStudyEngine(subjects, difficulty, hours, daysLeft);
-    const schedule = generateSchedule(subjectPlan, daysLeft);
+Create a structured study plan.
 
-    const planHTML = renderPlan(subjectPlan, schedule, hours, daysLeft);
+Subjects: ${subjects}
+Difficulty levels: ${difficulty}
+Hours per day: ${hours}
+Exam date: ${examDate}
 
-    outputDiv.innerHTML = planHTML;
-    localStorage.setItem("elitePlan", planHTML);
+Rules:
+- Break into daily schedule
+- Prioritize harder subjects
+- Include revision days
+- Keep it realistic for a medical student
+`;
+
+    outputDiv.innerHTML = "Generating AI study plan...";
+
+    const aiResponse = await generateAIPlan(prompt);
+
+    outputDiv.innerHTML = aiResponse;
+
+    localStorage.setItem("studyPlan", aiResponse);
 });
+
+    
 
 // ===== MEMORY SYSTEM =====
 function saveProgress() {
