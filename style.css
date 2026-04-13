@@ -1,0 +1,113 @@
+/* ===== ROOT DESIGN SYSTEM ===== */
+:root {
+    --bg1: #1e1e2f;
+    --bg2: #2c2c54;
+    --card: #2f2f4f;
+    --text: #ffffff;
+    --accent: #00c9a7;
+    --accent-dark: #00a98a;
+    --radius: 12px;
+}
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    color: var(--text);
+}
+
+/* ===== LAYOUT ===== */
+.container {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 24px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* ===== BUTTONS ===== */
+button {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--accent);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+/* ===== TIMER ===== */
+.timer {
+    margin-top: 24px;
+    text-align: center;
+}
+
+#time {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* ===== OUTPUT ===== */
+#output {
+    margin-top: 20px;
+    background: #1e1e2f;
+    padding: 15px;
+    border-radius: var(--radius);
+    border-left: 4px solid var(--accent);
+}
+
+/* ===== TASK ITEMS ===== */
+.task {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
