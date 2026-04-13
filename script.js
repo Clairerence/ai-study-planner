@@ -1,8 +1,8 @@
 async function generateAIPlan(prompt) {
-    const apiKey = "AIzaSyDJ_4JB7mlnBLiwfC3WHUYhdNeALKxn-bs";
+    const apiKey = "AAIzaSyBghZuk84vsqf4I4D0fvLeYQEdB-3Lm5sc";
 
     const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + apiKey,
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=,
         {
             method: "POST",
             headers: {
