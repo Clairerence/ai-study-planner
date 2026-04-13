@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner | Elite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="container">
+
+    <header>
+        <h1>AI Study Planner</h1>
+        <p>Build a smart, structured study schedule in seconds.</p>
+    </header>
+
+    <section class="form-section">
+
+        <form id="studyForm">
+
+            <div class="form-group">
+                <label for="subjects">Subjects (comma separated)</label>
+                <input type="text" id="subjects" placeholder="Anatomy, Physiology, Biochem" required>
+            </div>
+
+            <div class="form-group">
+                <label for="difficulty">Difficulty (1–3 per subject)</label>
+                <input type="text" id="difficulty" placeholder="3,2,3" required>
+                <small>1 = easy, 3 = hard</small>
+            </div>
+
+            <div class="form-group">
+                <label for="hours">Study Hours per Day</label>
+                <input type="number" id="hours" min="1" max="16" required>
+            </div>
+
+            <div class="form-group">
+                <label for="examDate">Exam Date</label>
+                <input type="date" id="examDate" required>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Generate Study Plan
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="timer-section">
+
+        <h2>⏱️ Focus Timer</h2>
+
+        <div class="timer-display">
+            <p id="time">25:00</p>
+        </div>
+
+        <div class="timer-controls">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+
+    </section>
+
+    <section id="output" class="output-section">
+        <!-- AI-generated plan appears here -->
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
